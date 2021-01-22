@@ -7,5 +7,13 @@
         "sequelize": "npm run --prefix backend sequelize",
         "sequelize-cli": "npm run --prefix backend sequelize-cli",
         "start": "npm start --prefix backend"
+    },
+
+    "name": "authenticate-me-karma",
+    "description": "a really cool app",
+    "version": "1.0.0",
+    "engines": {
+        "node": "10.23.0"
     }
+
 }
