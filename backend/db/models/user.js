@@ -18,13 +18,6 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [3, 256]
-      },
-    },
     hashedPassword: {
       type: DataTypes.STRING.BINARY,
       allowNull: false,
@@ -32,10 +25,14 @@ module.exports = (sequelize, DataTypes) => {
         len: [60, 60]
       },
     },
+    accountBalance: {
+      type: DataTypes.DOUBLE,
+      allowNull: false,
+    }
   }, {
     defaultScope: {
       attributes: {
-        exclude: ['hashedPassword', 'email', 'createdAt', 'updatedAt'],
+        exclude: ['hashedPassword', 'createdAt', 'updatedAt'],
       },
     },
     scopes: {
@@ -56,12 +53,10 @@ module.exports = (sequelize, DataTypes) => {
     const {
       id,
       username,
-      email
     } = this; // context will be the User instance
     return {
       id,
       username,
-      email
     };
   };
   User.prototype.validatePassword = function (password) {
@@ -81,7 +76,6 @@ module.exports = (sequelize, DataTypes) => {
       where: {
         [Op.or]: {
           username: credential,
-          email: credential,
         },
       },
     });
@@ -89,11 +83,10 @@ module.exports = (sequelize, DataTypes) => {
       return await User.scope('currentUser').findByPk(user.id);
     }
   };
-  User.signup = async function ({ username, email, password }) {
+  User.signup = async function ({ username, password }) {
     const hashedPassword = bcrypt.hashSync(password);
     const user = await User.create({
       username,
-      email,
       hashedPassword,
     });
     return await User.scope('currentUser').findByPk(user.id);
