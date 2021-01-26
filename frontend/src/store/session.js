@@ -23,11 +23,13 @@ export const signup = (user) => async (dispatch) => {
         username,
         password
     } = user;
+    const accountBalance = 10000;
     const response = await fetch("/api/users", {
         method: "POST",
         body: JSON.stringify({
             username,
             password,
+            accountBalance
         }),
     });
     dispatch(setUser(response.data.user));

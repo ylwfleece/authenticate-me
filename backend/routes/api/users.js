@@ -47,7 +47,7 @@ const validateSignup = [
     validateSignup,
     asyncHandler(async (req, res) => {
       const { password, username } = req.body;
-      const user = await User.signup({  username, password });
+      const user = await User.signup({  username, password, accountBalance: 10000.75 });
   
       await setTokenCookie(res, user);
   

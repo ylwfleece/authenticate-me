@@ -18,8 +18,7 @@ module.exports = {
         allowNull: false,
       },
       accountBalance: {
-        type: Sequelize.DOUBLE,
-        allowNull: false,
+        type: Sequelize.DOUBLE
       },
       createdAt: {
         allowNull: false,

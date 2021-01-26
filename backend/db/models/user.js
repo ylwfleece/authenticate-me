@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     accountBalance: {
       type: DataTypes.DOUBLE,
-      allowNull: false,
+      allowNull: true,
     }
   }, {
     defaultScope: {
@@ -83,11 +83,12 @@ module.exports = (sequelize, DataTypes) => {
       return await User.scope('currentUser').findByPk(user.id);
     }
   };
-  User.signup = async function ({ username, password }) {
+  User.signup = async function ({ username, password, accountBalance }) {
     const hashedPassword = bcrypt.hashSync(password);
     const user = await User.create({
       username,
       hashedPassword,
+      accountBalance
     });
     return await User.scope('currentUser').findByPk(user.id);
   };
