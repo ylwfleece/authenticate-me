@@ -18,7 +18,7 @@ export const getProjects = () => async (dispatch) => {
 };
 
 const initialState = {
-    user: null
+    projects: null
 };
 
 const sessionReducer = (state = initialState, action) => {

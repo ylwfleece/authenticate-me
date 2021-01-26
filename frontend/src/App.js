@@ -7,6 +7,7 @@ import DemoLoginPage from "./components/DemoLoginPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import ProjectsPage from "./components/ProjectsPage";
+import ProjectDetail from "./components/ProjectDetail";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,8 +30,11 @@ function App() {
           <Route path="/demo">
             <DemoLoginPage />
           </Route>
-          <Route path="/projects">
+          <Route exact path="/projects">
             <ProjectsPage />
+          </Route>
+          <Route path="/project/:projectId">
+            <ProjectDetail />
           </Route>
         </Switch>
       )}
