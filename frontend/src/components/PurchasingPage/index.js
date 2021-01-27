@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   useSelector, useDispatch
 } from 'react-redux';
@@ -33,14 +33,23 @@ function PurchasingPage() {
       purchasedShares += projectPurchases[i].numberOfShares;
     }
 
-    let availableShares = project.numberOfShares - purchasedShares;
+    const availableShares = project.numberOfShares - purchasedShares;
+
+    const [shares, setShares] = useState(0);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-      console.log('in purchasing page use ef')
       return dispatch(purchaseActions.getPurchases());
     }, [dispatch, useSelector]);
+
+    const userId = useSelector(state => state.session.user.id);
+
+    const onSubmit = (e) => {
+      e.preventDefault();
+      // dispatch purchase
+      return dispatch(purchaseActions.createPurchase({ numberOfShares: shares, userId, projectId}))
+    }
 
     return (
         <div>
@@ -49,7 +58,27 @@ function PurchasingPage() {
             <h2>Karma per share: {project.karmaPerShare}</h2>
             <h3>available shares: {availableShares}</h3>
             <h3>cost per share: ${project.costPerShare}</h3>
-            <h3></h3>
+            <h3>--</h3>
+            <form className="cat-form" onSubmit={onSubmit}>
+            <h2>Purchase shares</h2>
+            <ul className="errors">
+              {/* {errors.map(error => (
+                <li key={error}>
+                  {error}
+                </li>
+              ))} */}
+            </ul>
+            <label>
+              Number of shares
+              <input
+                type="text"
+                name="shares"
+                value={shares}
+                onChange={(e) => setShares(e.target.value)}
+              />
+            </label>
+            <button type="submit" disabled={false}>submit purchase</button>
+          </form>
         </div>
     );
 } 

@@ -13,5 +13,17 @@ router.get(
     }),
 );
 
+router.post(
+    '',
+    asyncHandler(async (req, res) => {
+        const { numberOfShares, projectId, userId } = req.body;
+        const purchase = await Purchase.create( { numberOfShares, projectId, userId});
+        return res.json({
+            purchase
+        });
+    }),
+);
+
+
 
 module.exports = router;

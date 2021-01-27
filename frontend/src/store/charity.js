@@ -2,7 +2,7 @@ import {
     fetch
 } from './csrf';
 
-const SET_CHARITIES = 'session/setCharities';
+const SET_CHARITIES = 'charity/setCharities';
 
 const setCharities = (charities) => {
     return {
