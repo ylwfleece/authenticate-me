@@ -13,6 +13,8 @@ function Navigation({ isLoaded }){
       <div>
         <ProfileButton user={sessionUser} />   
         <NavLink to="/projects">Projects</NavLink>
+        <NavLink to="/dashboard">Dashboard</NavLink>
+        <NavLink to="/watchlist">Watchlist</NavLink>
       </div>
     );
   } else {

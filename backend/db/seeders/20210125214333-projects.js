@@ -35,6 +35,17 @@ module.exports = {
         adminId: 2,
         createdAt: new Date(),
         updatedAt: new Date()
+      },
+      {
+        name: 'Fistula Surgery',
+        costPerShare: 0.06,
+        karmaPerShare: 4,
+        numberOfShares: 10000,
+        karmaReleased: false,
+        charityId: 3,
+        adminId: 2,
+        createdAt: new Date(),
+        updatedAt: new Date()
       }], {});
     
   },

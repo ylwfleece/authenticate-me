@@ -8,19 +8,27 @@ import { Link } from 'react-router-dom';
 
 function ProjectsPage() {
   const dispatch = useDispatch();
+  const user = useSelector(state => state.session.user);
   const projects = useSelector(state => state.project.projects);
+  let purchases = useSelector(state => state.purchase.purchases);
+  console.log(purchases);
+  purchases = purchases.filter(p => p.userId === user.id);
 
-  const history = useHistory();
-
-  // const redirectToDetail = (projectId) => {
-    // set project detail in state
-    // console.log("redirecting to project: ", projectId);
-    // history.push(`/projects/${projectId}`);
-  // }
+  console.log(purchases);
 
   useEffect(() => {
     return dispatch(projectActions.getProjects());
-  }, [dispatch, useSelector])
+  }, [dispatch, useSelector]);
+
+  let purchasedProjects = [];
+  if (purchases) {
+    purchases.forEach(p => {
+      if(!purchasedProjects.includes(p.projectId)) {
+        purchasedProjects.push(p.projectId);
+      }
+    });
+  }
+  console.log(purchasedProjects)
 
   return (
       <div>
@@ -29,11 +37,10 @@ function ProjectsPage() {
           <li key={project.id}>
               <Link 
                 to={`/project/${project.id}`} 
-                // onClick={redirectToDetail}
               >
                 {project.name}
               </Link>
-              <p key={project.costPerShare}>cost per share: {project.costPerShare}</p>  
+              <p key={project.costPerShare}>cost per share: {project.costPerShare}, {!purchasedProjects.includes(project.id) && <button>add to watchlist</button>}</p>  
           </li>
             
         ))}
