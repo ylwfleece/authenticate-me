@@ -10,6 +10,7 @@ import ProjectsPage from "./components/ProjectsPage";
 import ProjectDetail from "./components/ProjectDetail";
 import PurchasingPage from "./components/PurchasingPage";
 import PurchaseDetail from "./components/PurchaseDetail";
+import Dashboard from "./components/Dashboard";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,6 +44,9 @@ function App() {
           </Route>
           <Route path="/purchase/:purchaseId">
             <PurchaseDetail />
+          </Route>
+          <Route path="/dashboard">
+            <Dashboard />
           </Route>
         </Switch>
       )}

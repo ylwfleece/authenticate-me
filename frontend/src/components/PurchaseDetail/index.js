@@ -4,6 +4,7 @@ import {
 } from 'react-redux';
 import './PurchaseDetail.css';
 import {
+    useHistory,
   useParams, 
 //   Link
 } from 'react-router-dom';
@@ -26,13 +27,20 @@ function PurchaseDetail() {
         project = projects.find(project => project.id.toString() === purchase.projectId.toString());
     }
 
-    useEffect(() => {
-        console.log('called useeffect')
-    }, [useSelector])
+    // useEffect(() => {
+    //     console.log('called useeffect')
+    // }, [useSelector])
+
+    const history = useHistory();
+
+    const goToDashboard = () => {
+        history.push(`/dashboard`);
+    }
 
     return (
         <div>
             <h2>Congratulations! You've purchased {purchase.numberOfShares} shares of {project.name}</h2>
+            <button onClick={goToDashboard}>go to dashboard</button>
         </div>
     )
 }
