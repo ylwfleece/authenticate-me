@@ -4,12 +4,14 @@ import sessionReducer from './session';
 import projectReducer from './project';
 import charityReducer from './charity';
 import purchaseReducer from './purchase';
+import watchlistReducer from "./watchlist";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   project: projectReducer,
   charity: charityReducer,
-  purchase: purchaseReducer
+  purchase: purchaseReducer,
+  watchlist: watchlistReducer
 });
 
 let enhancer;
