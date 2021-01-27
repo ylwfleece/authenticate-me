@@ -39,7 +39,7 @@ function ProjectDetail() {
   return ( 
     <div>
       <h1>{project.name}</h1>
-      <h2>associated charity: {charity.name} </h2>
+      <h2>associated charity: {charity && charity.name} </h2>
       {/* <h2>outstanding shares: [outstanding shares]</h2> */}
       <h2>karma per share: {project.karmaPerShare}</h2>
       <h2>cost per share: {project.costPerShare}</h2>

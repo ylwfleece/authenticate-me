@@ -9,7 +9,7 @@ module.exports = {
         karmaPerShare: 2,
         numberOfShares: 100000,
         karmaReleased: false,
-        charityId: 4,
+        charityId: 2,
         adminId: 2,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -20,7 +20,7 @@ module.exports = {
         karmaPerShare: 1,
         numberOfShares: 350000,
         karmaReleased: false,
-        charityId: 3,
+        charityId: 1,
         adminId: 2,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -31,7 +31,7 @@ module.exports = {
         karmaPerShare: 3,
         numberOfShares: 10000,
         karmaReleased: false,
-        charityId: 5,
+        charityId: 3,
         adminId: 2,
         createdAt: new Date(),
         updatedAt: new Date()
