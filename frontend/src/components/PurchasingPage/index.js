@@ -4,6 +4,7 @@ import {
 } from 'react-redux';
 import './PurchasingPage.css';
 import {
+  useHistory,
   useParams, 
 //   Link
 } from 'react-router-dom';
@@ -45,10 +46,13 @@ function PurchasingPage() {
 
     const userId = useSelector(state => state.session.user.id);
 
-    const onSubmit = (e) => {
+    const history = useHistory();
+
+    const onSubmit = async (e) => {
       e.preventDefault();
-      // dispatch purchase
-      return dispatch(purchaseActions.createPurchase({ numberOfShares: shares, userId, projectId}))
+      const purchase = await dispatch(purchaseActions.createPurchase({ numberOfShares: shares, userId, projectId}));
+      const purchaseId = purchase.id;
+      history.push(`/purchase/${purchaseId}`);
     }
 
     return (

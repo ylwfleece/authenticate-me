@@ -9,6 +9,7 @@ import Navigation from "./components/Navigation";
 import ProjectsPage from "./components/ProjectsPage";
 import ProjectDetail from "./components/ProjectDetail";
 import PurchasingPage from "./components/PurchasingPage";
+import PurchaseDetail from "./components/PurchaseDetail";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +40,9 @@ function App() {
           </Route>
           <Route path="/purchasing/:projectId">
             <PurchasingPage />
+          </Route>
+          <Route path="/purchase/:purchaseId">
+            <PurchaseDetail />
           </Route>
         </Switch>
       )}

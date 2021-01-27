@@ -30,7 +30,7 @@ export const createPurchase = (purchase) => async (dispatch) => {
 
       if (response.ok) {
         // const purchase = await response.json();
-        const purchase = response;
+        const purchase = response.data.purchase;
         dispatch(addPurchase(purchase));
         return purchase;
       }
