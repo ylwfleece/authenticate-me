@@ -21,7 +21,7 @@ const initialState = {
     projects: null
 };
 
-const sessionReducer = (state = initialState, action) => {
+const projectReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case SET_PROJECTS:
@@ -33,4 +33,4 @@ const sessionReducer = (state = initialState, action) => {
     }
 };
 
-export default sessionReducer;
+export default projectReducer;

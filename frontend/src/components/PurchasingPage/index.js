@@ -17,8 +17,11 @@ function PurchasingPage() {
     return (
         <div>
             <h1>Purchase order for {project.name}</h1>
-            <h3>outstanding shares: </h3>
-            
+            {/* <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.againstmalaria.com%2Fbobcomer&psig=AOvVaw34fkAmFeqTwmxDleILLcRP&ust=1611850763740000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLiRtJ7CvO4CFQAAAAAdAAAAABAD" */}
+            <h2>Karma per share: {project.karmaPerShare}</h2>
+            <h3>outstanding shares: {project.numberOfShares} - [shares of existing purchase orders with projectid]</h3>
+            <h3>cost per share: {project.costPerShare}</h3>
+            <h3></h3>
         </div>
     );
 } 

@@ -8,7 +8,8 @@ import configureStore from './store';
 import { restoreCSRF, fetch } from './store/csrf';
 
 import * as sessionActions from './store/session';
-import * as projectActions from './store/project'
+import * as projectActions from './store/project';
+import * as charityActions from './store/charity';
 
 const store = configureStore();
 
@@ -19,6 +20,7 @@ if (process.env.NODE_ENV !== 'production') {
   window.store = store;
   window.sessionActions = sessionActions;
   window.projectActions = projectActions;
+  window.charityActions = charityActions;
 }
 
 function Root() {

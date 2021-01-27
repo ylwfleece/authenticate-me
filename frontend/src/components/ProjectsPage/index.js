@@ -9,15 +9,14 @@ import { Link } from 'react-router-dom';
 function ProjectsPage() {
   const dispatch = useDispatch();
   const projects = useSelector(state => state.project.projects);
-  // const projectI
 
   const history = useHistory();
 
-  const redirectToDetail = (projectId) => {
+  // const redirectToDetail = (projectId) => {
     // set project detail in state
-    console.log("redirecting to project: ", projectId);
+    // console.log("redirecting to project: ", projectId);
     // history.push(`/projects/${projectId}`);
-  }
+  // }
 
   useEffect(() => {
     return dispatch(projectActions.getProjects());
@@ -30,7 +29,7 @@ function ProjectsPage() {
           <li key={project.id}>
               <Link 
                 to={`/project/${project.id}`} 
-                onClick={redirectToDetail}
+                // onClick={redirectToDetail}
               >
                 {project.name}
               </Link>
