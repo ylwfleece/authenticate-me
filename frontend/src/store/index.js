@@ -3,11 +3,13 @@ import thunk from "redux-thunk";
 import sessionReducer from './session';
 import projectReducer from './project';
 import charityReducer from './charity';
+import purchaseReducer from './purchase';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   project: projectReducer,
-  charity: charityReducer
+  charity: charityReducer,
+  purchase: purchaseReducer
 });
 
 let enhancer;

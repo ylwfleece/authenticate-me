@@ -18,27 +18,29 @@ function ProjectDetail() {
   const dispatch = useDispatch();
 
   const charities = useSelector(state => state.charity.charities);
-  const charity = charities.find(charity => charity.id.toString() === project.charityId.toString());
-  console.log(charity);
+  console.log(charities);
 
-  
+  let charity;
+
+  if (charities) {
+    charities.forEach(el => {
+      if (el.id === project.charityId) {
+        charity = el;
+      }
+    });
+  }
   
   useEffect(() => {
-    console.log('in use ef')
     return dispatch(charityActions.getCharities());
   }, [dispatch, useSelector]);
-
-  // get associated charity
-  
-  // calculate outstanding shares
  
 
 
   return ( 
     <div>
       <h1>{project.name}</h1>
-      <h2>associated charity: [charity] </h2>
-      <h2>outstanding shares: [outstanding shares]</h2>
+      <h2>associated charity: {charity.name} </h2>
+      {/* <h2>outstanding shares: [outstanding shares]</h2> */}
       <h2>karma per share: {project.karmaPerShare}</h2>
       <h2>cost per share: {project.costPerShare}</h2>
       <Link to={`/purchasing/${project.id}`}>purchase shares, redirect to PurchasingPage</Link>

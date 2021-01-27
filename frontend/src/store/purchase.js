@@ -2,35 +2,35 @@ import {
     fetch
 } from './csrf';
 
-const SET_CHARITIES = 'session/setCharities';
+const SET_PURCHASES = 'session/setPurchases';
 
-const setCharities = (charities) => {
+const setPurchases = (purchases) => {
     return {
-        type: SET_CHARITIES,
-        payload: charities
+        type: SET_PURCHASES,
+        payload: purchases
     }
 }
 
-export const getCharities = () => async (dispatch) => {
-    const response = await fetch("/api/charities");
-    dispatch(setCharities(response.data.charities));
+export const getPurchases = () => async (dispatch) => {
+    const response = await fetch("/api/purchases");
+    dispatch(setPurchases(response.data.purchases));
     return response;
 };
 
 const initialState = {
-    charities: null
+    purchases: null
 };
 
-const charityReducer = (state = initialState, action) => {
+const purchaseReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
-        case SET_CHARITIES:
+        case SET_PURCHASES:
             newState = Object.assign({}, state);
-            newState.charities = action.payload;
+            newState.purchases = action.payload;
             return newState;
         default:
             return state;
     }
 };
 
-export default charityReducer;
+export default purchaseReducer;
