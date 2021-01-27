@@ -4,8 +4,10 @@ import {
 } from 'react-redux';
 import './ProjectDetail.css';
 import {
-  useParams
+  useParams, 
+  Link
 } from 'react-router-dom';
+
 
 function ProjectDetail() {
   const { projectId } = useParams();
@@ -14,6 +16,8 @@ function ProjectDetail() {
 
   // get associated charity
 
+  // calculate outstanding shares
+
   return ( 
     <div>
       <h1>{project.name}</h1>
@@ -21,7 +25,7 @@ function ProjectDetail() {
       <h2>outstanding shares: [outstanding shares]</h2>
       <h2>karma per share: {project.karmaPerShare}</h2>
       <h2>cost per share: {project.costPerShare}</h2>
-      <button>purchase shares, redirect to PurchasingPage</button>
+      <Link to={`/purchasing/${project.id}`}>purchase shares, redirect to PurchasingPage</Link>
     </div>  
   )
 }
