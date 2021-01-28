@@ -68,7 +68,7 @@ function ProjectsPage() {
               <Link to={`/project/${project.id}`}>
                 {project.name}
               </Link>
-              <p key={project.costPerShare}>cost per share: {project.costPerShare}, {(!(purchasedProjects.includes(project.id) || watchlistedProjects.includes(project.id))) && <button onClick={(e) => addToWatchlist(e, project.id)}>add to watchlist</button>}</p> 
+              <p key={project.costPerShare}>cost per share: ${project.costPerShare} {(!(purchasedProjects.includes(project.id) || watchlistedProjects.includes(project.id))) && <button onClick={(e) => addToWatchlist(e, project.id)}>add to watchlist</button>}</p> 
               <p key={project.id} className="success" hidden={(!success || watchProjectId !== project.id)}>successfully added to watchlist</p> 
           </div>
         ))}
