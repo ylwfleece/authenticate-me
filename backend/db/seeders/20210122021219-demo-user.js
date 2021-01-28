@@ -26,6 +26,13 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
+      {
+        username: 'admin',
+        hashedPassword: bcrypt.hashSync('password'),
+        accountBalance: 10000,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
     ], {});
   },
 

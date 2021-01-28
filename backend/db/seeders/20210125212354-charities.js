@@ -19,7 +19,42 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
 
-      }], {});
+      },{
+        name: 'Fistula Foundation',
+        createdAt: new Date(),
+        updatedAt: new Date()
+
+      },{
+        name: 'Malaria Consortium',
+        createdAt: new Date(),
+        updatedAt: new Date()
+
+      },{
+        name: 'Hellen Keller International',
+        createdAt: new Date(),
+        updatedAt: new Date()
+
+      },{
+        name: 'New Incentives',
+        createdAt: new Date(),
+        updatedAt: new Date()
+
+      },{
+        name: 'SCI Foundation',
+        createdAt: new Date(),
+        updatedAt: new Date()
+
+      },{
+        name: 'Evidence Action',
+        createdAt: new Date(),
+        updatedAt: new Date()
+
+      },{
+        name: 'Sightsavers',
+        createdAt: new Date(),
+        updatedAt: new Date()
+
+      },], {});
     
   },
 
