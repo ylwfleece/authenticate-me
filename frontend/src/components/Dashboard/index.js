@@ -34,7 +34,7 @@ function Dashboard() {
                 purchasesObj[p.projectId] = p;
             }
             if (!purchasesObj[p.projectId].project) {
-                purchasesObj[p.projectId].project = projects.find(project => project.id === p.projectId).name;
+                purchasesObj[p.projectId].project = projects.find(project => project.id === p.projectId);
             }
         });
     }
@@ -43,9 +43,11 @@ function Dashboard() {
     return (
         <div>
             <h2>Your portfolio</h2>
-            <ul>
-             {purchases.length > 0 && purchases.map(purchase => <li key={purchase.id}>{purchase.project}: {purchase.numberOfShares} shares</li>)}
-            </ul>
+            <div>
+             {purchases.length > 0 && 
+                purchases.map(purchase => 
+                <div className="project" key={purchase.id}>{purchase.project.name}: {purchase.numberOfShares} shares, {purchase.project.karmaReleased ? <>earned karma: </> : <>pending karma: </>}{purchase.numberOfShares * purchase.project.karmaPerShare}</div>)}
+            </div>
         </div>
     )
 }

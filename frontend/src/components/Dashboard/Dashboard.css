@@ -2,3 +2,13 @@
     padding: auto;
     margin: auto;
 }
+
+.project {
+    background-color: linen;
+    margin: 1%;
+    width: 40%;
+}
+
+.project:hover {
+    background-color: yellow;
+  }
