@@ -1,4 +1,6 @@
-* {
-    padding: 2px;
-    margin-left: 10px;
+.navbar {
+    background-color: beige;
+    width: 50%;
+    display: flex;
+    
 }

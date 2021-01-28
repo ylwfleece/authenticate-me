@@ -10,20 +10,20 @@ function Navigation({ isLoaded }){
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <>
+      <div className="navbar">
         <ProfileButton user={sessionUser} />   
         <NavLink to="/projects">Projects</NavLink>
         <NavLink to="/dashboard">Dashboard</NavLink>
         <NavLink to="/watchlist">Watchlist</NavLink>
-      </>
+      </div>
     );
   } else {
     sessionLinks = (
-      <>
+      <div className="navbar">
         <NavLink to="/login">Log In</NavLink>
         <NavLink to="/signup">Sign Up</NavLink>
         <NavLink to="/demo">Demo</NavLink>
-      </>
+      </div>
     );
   }
 
