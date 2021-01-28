@@ -9,8 +9,16 @@ import {
 //   Link
 } from 'react-router-dom';
 import * as purchaseActions from '../../store/purchase';
+import * as projectActions from '../../store/project';
 
 function PurchasingPage() {
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(projectActions.getProjects());
+        dispatch(purchaseActions.getPurchases());
+    }, [useSelector, dispatch]);
 
     const { projectId } = useParams();
     const projects = useSelector(state => state.project.projects);
@@ -26,8 +34,6 @@ function PurchasingPage() {
       });
     }
 
-    console.log(projectPurchases)
-
     let purchasedShares = 0;
 
     for (let i=0; i<projectPurchases.length; i++) {
@@ -36,13 +42,7 @@ function PurchasingPage() {
 
     const availableShares = project.numberOfShares - purchasedShares;
 
-    const [shares, setShares] = useState(0);
-
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-      return dispatch(purchaseActions.getPurchases());
-    }, [dispatch, useSelector]);
+    const [shares, setShares] = useState(10);
 
     const userId = useSelector(state => state.session.user.id);
 
@@ -75,13 +75,14 @@ function PurchasingPage() {
             <label>
               Number of shares
               <input
-                type="text"
+                type="number"
                 name="shares"
                 value={shares}
                 onChange={(e) => setShares(e.target.value)}
               />
             </label>
-            <button type="submit" disabled={false}>submit purchase</button>
+            {/* <a hidden={shares >= 10}>must purchase at least 10 shares</a> */}
+            <button type="submit" disabled={shares < 10 }>submit purchase</button>
           </form>
         </div>
     );
