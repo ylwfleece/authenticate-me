@@ -12,6 +12,7 @@ import PurchasingPage from "./components/PurchasingPage";
 import PurchaseDetail from "./components/PurchaseDetail";
 import Dashboard from "./components/Dashboard";
 import Watchlist from "./components/Watchlist";
+import LandingPage from "./components/LandingPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +26,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path="/">
+            <LandingPage />
+          </Route>
           <Route path="/login">
             <LoginFormPage />
           </Route>
