@@ -40,9 +40,9 @@ function PurchasingPage() {
       purchasedShares += projectPurchases[i].numberOfShares;
     }
 
-    const availableShares = project.numberOfShares - purchasedShares;
-
     const [shares, setShares] = useState(10);
+
+    const availableShares = project.numberOfShares - purchasedShares;
 
     const userId = useSelector(state => state.session.user.id);
 
@@ -82,7 +82,7 @@ function PurchasingPage() {
               />
             </label>
             {/* <a hidden={shares >= 10}>must purchase at least 10 shares</a> */}
-            <button type="submit" disabled={shares < 10 }>submit purchase</button>
+            <button type="submit" disabled={(shares < 10 || shares > availableShares)}>submit purchase</button>
           </form>
         </div>
     );
