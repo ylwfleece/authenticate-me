@@ -66,7 +66,7 @@ function ProjectsPage() {
       <div>
         <h3>available projects</h3>
         {projects && projects.map(project => (
-          <li key={project.id}>
+          <div key={project.id} className="project">
               <Link 
                 to={`/project/${project.id}`} 
               >
@@ -74,7 +74,7 @@ function ProjectsPage() {
               </Link>
               <p key={project.costPerShare}>cost per share: {project.costPerShare}, {(!(purchasedProjects.includes(project.id) || watchlistedProjects.includes(project.id))) && <button onClick={(e) => addToWatchlist(e, project.id)}>add to watchlist</button>}</p> 
               <p key={project.id} className="success" hidden={(!success || watchProjectId !== project.id)}>successfully added to watchlist</p> 
-          </li>
+          </div>
         ))}
     </div>
   );
