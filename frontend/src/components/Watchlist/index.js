@@ -25,14 +25,16 @@ function Watchlist() {
     if (watchlists) {
       watchlists = watchlists.filter(w => w.userId === user.id);
     }
-    console.log(watchlists)
 
     return (
         <div>
             <h1>watchlist</h1>
             <ul>
                 {watchlists && watchlists.map(w => (
-                    <li key={w.id}>{w.id}, {(projects.find(p => p.id === w.projectId)).name}, karma released: {(projects.find(p => p.id === w.projectId)).karmaReleased.toString()}</li>
+                    <li key={w.id}>{w.id}, 
+                        project: {(projects.find(p => p.id === w.projectId)).name},
+                        karma released: {(projects.find(p => p.id === w.projectId)).karmaReleased.toString()}
+                    </li>
                 ))}
             </ul>
         </div>
