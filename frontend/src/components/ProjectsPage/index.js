@@ -36,8 +36,14 @@ function ProjectsPage() {
   console.log(purchasedProjects);
 
   let watchlists = useSelector(state => state.watchlist.watchlists);
+  let watchlistedProjects = [];
   if (watchlists) {
     watchlists = watchlists.filter(w => w.userId === user.id);
+    watchlists.forEach(w => {
+      if(!watchlistedProjects.includes(w.projectId)) {
+        watchlistedProjects.push(w.projectId);
+      }
+    });
   }
 
   return (
@@ -50,7 +56,7 @@ function ProjectsPage() {
               >
                 {project.name}
               </Link>
-              <p key={project.costPerShare}>cost per share: {project.costPerShare}, {!purchasedProjects.includes(project.id) && <button>add to watchlist</button>}</p>  
+              <p key={project.costPerShare}>cost per share: {project.costPerShare}, {(!(purchasedProjects.includes(project.id) || watchlistedProjects.includes(project.id))) && <button>add to watchlist</button>}</p>  
           </li>
             
         ))}
