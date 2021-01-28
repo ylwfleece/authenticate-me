@@ -11,6 +11,7 @@ import * as sessionActions from './store/session';
 import * as projectActions from './store/project';
 import * as charityActions from './store/charity';
 
+
 const store = configureStore();
 
 if (process.env.NODE_ENV !== 'production') {

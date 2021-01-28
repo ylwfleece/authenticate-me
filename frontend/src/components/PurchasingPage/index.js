@@ -83,6 +83,7 @@ function PurchasingPage() {
             </label>
             {/* <a hidden={shares >= 10}>must purchase at least 10 shares</a> */}
             <button type="submit" disabled={(shares < 10 || shares > availableShares)}>submit purchase</button>
+            <p hidden={!(shares < 10 || shares > availableShares)}> must purchase between 10 and {availableShares} shares</p>
           </form>
         </div>
     );

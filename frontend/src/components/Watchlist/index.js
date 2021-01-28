@@ -9,6 +9,7 @@ import './Watchlist.css';
 import { Link } from 'react-router-dom';
 
 function Watchlist() {
+
     const history = useHistory();
     const dispatch = useDispatch();
 
@@ -37,6 +38,7 @@ function Watchlist() {
                     </li>
                 ))}
             </ul>
+            
         </div>
     )
 }

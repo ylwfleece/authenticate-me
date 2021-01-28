@@ -2,3 +2,7 @@
     padding: 2px;
     margin-left: 10px;
 }
+
+.success {
+    color: green;
+}

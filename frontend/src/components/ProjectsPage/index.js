@@ -9,6 +9,7 @@ import './ProjectsPage.css';
 import { Link } from 'react-router-dom';
 
 function ProjectsPage() {
+
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -44,10 +45,21 @@ function ProjectsPage() {
     });
   }
 
+  const [ success, setSuccess ] = useState(false);
+  const [ watchProjectId, setWatchProjectId ] = useState();
+
+  console.log(watchProjectId, "51");
+
+  const showSuccess = (projectId) => {
+    setSuccess(true);
+    setWatchProjectId(projectId);
+    console.log(watchProjectId, "54");
+  }
+
   const addToWatchlist = (e, projectId) => {
     e.target.hidden = true;
     dispatch(watchlistActions.createWatchlist({ userId: user.id, projectId }));
-    alert(`added to watchlist {${user.id}, ${projectId}}`);
+    showSuccess(projectId);
   }
 
   return (
@@ -60,7 +72,8 @@ function ProjectsPage() {
               >
                 {project.name}
               </Link>
-              <p key={project.costPerShare}>cost per share: {project.costPerShare}, {(!(purchasedProjects.includes(project.id) || watchlistedProjects.includes(project.id))) && <button onClick={(e) => addToWatchlist(e, project.id)}>add to watchlist</button>}</p>  
+              <p key={project.costPerShare}>cost per share: {project.costPerShare}, {(!(purchasedProjects.includes(project.id) || watchlistedProjects.includes(project.id))) && <button onClick={(e) => addToWatchlist(e, project.id)}>add to watchlist</button>}</p> 
+              <p key={project.id} className="success" hidden={(!success || watchProjectId !== project.id)}>successfully added to watchlist</p> 
           </li>
         ))}
     </div>
