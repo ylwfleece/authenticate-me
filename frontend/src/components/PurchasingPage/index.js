@@ -40,7 +40,7 @@ function PurchasingPage() {
       purchasedShares += projectPurchases[i].numberOfShares;
     }
 
-    const [shares, setShares] = useState(10);
+    const [shares, setShares] = useState(0);
 
     const availableShares = project.numberOfShares - purchasedShares;
 
@@ -63,7 +63,7 @@ function PurchasingPage() {
             <h3>available shares: {availableShares}</h3>
             <h3>cost per share: ${project.costPerShare}</h3>
             <h3>--</h3>
-            <form className="cat-form" onSubmit={onSubmit}>
+            <form hidden={availableShares < 1} className="cat-form" onSubmit={onSubmit}>
             <h2>Purchase shares</h2>
             <ul className="errors">
               {/* {errors.map(error => (
@@ -82,9 +82,12 @@ function PurchasingPage() {
               />
             </label>
             {/* <a hidden={shares >= 10}>must purchase at least 10 shares</a> */}
-            <button type="submit" disabled={(shares < 10 || shares > availableShares)}>submit purchase</button>
-            <p hidden={!(shares < 10 || shares > availableShares)}> must purchase between 10 and {availableShares} shares</p>
+            <button type="submit" disabled={(shares < 1 || shares > availableShares)}>submit purchase</button>
+            <p hidden={!(shares < 1 || shares > availableShares)}> must purchase between 1 and {availableShares} shares</p>
+            <h3 hidden={(availableShares < 1 || shares > availableShares)}>cost of purchase: ${(shares * project.costPerShare).toFixed(2)}</h3>
           </form>
+          <h2 hidden={availableShares > 0}>All shares have been purchased</h2>
+          
         </div>
     );
 } 

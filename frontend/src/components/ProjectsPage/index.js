@@ -47,9 +47,7 @@ function ProjectsPage() {
 
   const [ success, setSuccess ] = useState(false);
   const [ watchProjectId, setWatchProjectId ] = useState();
-
-  console.log(watchProjectId, "51");
-
+  
   const showSuccess = (projectId) => {
     setSuccess(true);
     setWatchProjectId(projectId);
@@ -67,9 +65,7 @@ function ProjectsPage() {
         <h3>available projects</h3>
         {projects && projects.map(project => (
           <div key={project.id} className="project">
-              <Link 
-                to={`/project/${project.id}`} 
-              >
+              <Link to={`/project/${project.id}`}>
                 {project.name}
               </Link>
               <p key={project.costPerShare}>cost per share: {project.costPerShare}, {(!(purchasedProjects.includes(project.id) || watchlistedProjects.includes(project.id))) && <button onClick={(e) => addToWatchlist(e, project.id)}>add to watchlist</button>}</p> 

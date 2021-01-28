@@ -8,20 +8,28 @@ import {
   Link
 } from 'react-router-dom';
 import * as charityActions from '../../store/charity';
-
+import * as projectActions from '../../store/project';
+import * as watchlistActions from '../../store/watchlist';
+import * as purchaseActions from '../../store/purchase';
 
 function ProjectDetail() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(projectActions.getProjects());
+    dispatch(watchlistActions.getWatchlists());
+    dispatch(purchaseActions.getPurchases());
+    dispatch(charityActions.getCharities());
+  }, [useSelector]);
+
   const { projectId } = useParams();
   const projects = useSelector(state => state.project.projects);
-  const project = projects.find(project => project.id.toString() === projectId.toString());
-
-  const dispatch = useDispatch();
+  let project;
+  if (projects) {
+    project = projects.find(project => project.id.toString() === projectId.toString());
+  } 
 
   const charities = useSelector(state => state.charity.charities);
-  console.log(charities);
-
   let charity;
-
   if (charities) {
     charities.forEach(el => {
       if (el.id === project.charityId) {
@@ -30,20 +38,13 @@ function ProjectDetail() {
     });
   }
   
-  useEffect(() => {
-    return dispatch(charityActions.getCharities());
-  }, [dispatch, useSelector]);
- 
-
-
   return ( 
     <div className="project">
-      <h1>{project.name}</h1>
+      <h1>{project && project.name}</h1>
       <h2>associated charity: {charity && charity.name} </h2>
-      {/* <h2>outstanding shares: [outstanding shares]</h2> */}
-      <h2>karma per share: {project.karmaPerShare}</h2>
-      <h2>cost per share: {project.costPerShare}</h2>
-      <Link to={`/purchasing/${project.id}`}>purchase shares</Link>
+      <h2>karma per share: {project && project.karmaPerShare} karmic units</h2>
+      <h2>cost per share: ${project && project.costPerShare}</h2>
+      <Link to={`/purchasing/${project && project.id}`}>purchase shares</Link>
     </div>  
   )
 }
