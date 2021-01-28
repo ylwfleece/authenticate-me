@@ -1,4 +1,13 @@
-* {
-    padding: auto;
-    margin: auto;
+
+.demoLoginBtn {
+    width: 40%;
+    /* margin-left: 30%; */
+    margin-top: 1%;
+    margin-left: 30%;
+    height: 90%;
+}
+
+.container {
+    background-color: limegreen;
+    height: 40%;
 }

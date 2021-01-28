@@ -22,7 +22,7 @@ function DemoLoginPage() {
   }
 
   return (
-      <div>
+      <div className="container">
         <button className="demoLoginBtn" onClick={demoLogin}>Log in as demo user</button>
     </ div>
   );

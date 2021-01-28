@@ -30,14 +30,14 @@ function Watchlist() {
     return (
         <div>
             <h1>watchlist</h1>
-            <ul>
+            <div>
                 {watchlists && watchlists.map(w => (
-                    <li key={w.id}>{w.id}, 
+                    <div className="project" key={w.id}>{w.id}, 
                         project: {(projects.find(p => p.id === w.projectId)).name},
                         karma released: {(projects.find(p => p.id === w.projectId)).karmaReleased.toString()}
-                    </li>
+                    </div>
                 ))}
-            </ul>
+            </div>
             
         </div>
     )
