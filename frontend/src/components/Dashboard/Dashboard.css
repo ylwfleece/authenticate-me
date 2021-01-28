@@ -3,7 +3,7 @@
     margin: auto;
 }
 
-.project {
+.project, .karma {
     background-color: linen;
     margin: 1%;
     width: 40%;

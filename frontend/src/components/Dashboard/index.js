@@ -40,6 +40,16 @@ function Dashboard() {
     }
     purchases = Object.values(purchasesObj);
 
+    let pendingKarma = 0; // karma per share of purchases where project.karmarel = false
+    let earnedKarma = 0;
+    purchases.forEach(p => {
+        if (!p.project.karmaReleased) {
+            pendingKarma += p.numberOfShares * p.project.karmaPerShare;
+        } else {
+            earnedKarma += p.numberOfShares * p.project.karmaPerShare;
+        }
+    })
+
     return (
         <div>
             <h2>Your portfolio</h2>
@@ -47,6 +57,11 @@ function Dashboard() {
              {purchases.length > 0 && 
                 purchases.map(purchase => 
                 <div className="project" key={purchase.id}>{purchase.project.name}: {purchase.numberOfShares} shares, {purchase.project.karmaReleased ? <>earned karma: </> : <>pending karma: </>}{purchase.numberOfShares * purchase.project.karmaPerShare}</div>)}
+            </div>
+            <h2>Your karma</h2>
+            <div>
+                <p className="karma">pending: {pendingKarma}</p>
+                <p className="karma">earned: {earnedKarma}</p>
             </div>
         </div>
     )

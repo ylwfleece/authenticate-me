@@ -37,13 +37,13 @@ function ProjectDetail() {
 
 
   return ( 
-    <div>
+    <div className="project">
       <h1>{project.name}</h1>
       <h2>associated charity: {charity && charity.name} </h2>
       {/* <h2>outstanding shares: [outstanding shares]</h2> */}
       <h2>karma per share: {project.karmaPerShare}</h2>
       <h2>cost per share: {project.costPerShare}</h2>
-      <Link to={`/purchasing/${project.id}`}>purchase shares, redirect to PurchasingPage</Link>
+      <Link to={`/purchasing/${project.id}`}>purchase shares</Link>
     </div>  
   )
 }
