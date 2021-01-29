@@ -9,8 +9,7 @@ import './AdminDashboard.css';
     useEffect(() => {
         dispatch(projectActions.getProjects());
     }, [useSelector]);
-
-    const user = useSelector(state => state.session.user);
+    
     const projects = useSelector(state => state.project.projects);
 
     const markComplete = (e) => {

@@ -21,6 +21,8 @@ function ProjectDetail() {
     dispatch(charityActions.getCharities());
   }, [useSelector]);
 
+  const user = useSelector(state => state.session.user);
+
   const { projectId } = useParams();
   const projects = useSelector(state => state.project.projects);
   let project;
@@ -44,7 +46,14 @@ function ProjectDetail() {
       <h2>associated charity: {charity && charity.name} </h2>
       <h2>karma per share: {project && project.karmaPerShare} karmic units</h2>
       <h2>cost per share: ${project && project.costPerShare}</h2>
-      <Link to={`/purchasing/${project && project.id}`}>purchase shares</Link>
+      <div hidden={user.accountBalance <= 0}>
+        <Link to={`/purchasing/${project && project.id}`}>purchase shares</Link>
+      </div>
+      <div hidden={user.accountBalance > 0}>
+        <p>you don't have enough money to buy a share</p>
+        {/* <Link to={`/purchasing/${project && project.id}`}>purchase shares</Link> */}
+      </div>
+      
     </div>  
   )
 }
