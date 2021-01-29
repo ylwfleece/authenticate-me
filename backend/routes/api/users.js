@@ -25,6 +25,23 @@ const validateSignup = [
   ];
 
   router.get(
+    '/:userId/:amount',
+    asyncHandler(async (req, res) => {
+      const { userId, amount } = req.params;
+      const user = await User.findByPk(userId);
+
+      user.accountBalance -= amount;
+      user.save();
+  
+      await setTokenCookie(res, user);
+  
+      return res.json({
+        user
+      });
+    }),
+  );
+
+  router.get(
     '/:userId',
     asyncHandler(async (req, res) => {
       const { userId } = req.params;

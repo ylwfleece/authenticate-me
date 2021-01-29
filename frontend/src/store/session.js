@@ -72,6 +72,12 @@ export const updateUser = (userId) => async (dispatch) => {
     return response;
 }
 
+export const decreaseBalance = (userId, amount) => async (dispatch) => {
+    const response = await fetch(`/api/users/${userId}/${amount}`);
+    dispatch(setUser(response.data.user));
+    return response;
+}
+
 const initialState = {
     user: null
 };

@@ -10,11 +10,11 @@ import {
 } from 'react-router-dom';
 import * as purchaseActions from '../../store/purchase';
 import * as projectActions from '../../store/project';
+import * as sessionActions from '../../store/session';
 
 function PurchasingPage() {
 
     const dispatch = useDispatch();
-
     useEffect(() => {
         dispatch(projectActions.getProjects());
         dispatch(purchaseActions.getPurchases());
@@ -40,11 +40,19 @@ function PurchasingPage() {
       purchasedShares += projectPurchases[i].numberOfShares;
     }
 
-    const [shares, setShares] = useState(0);
+    const [shares, setShares] = useState('');
 
-    const availableShares = project.numberOfShares - purchasedShares;
+    const user = useSelector(state => state.session.user)
+    let userId;
+    if (user) {
+      userId = user.id;
+    }
 
-    const userId = useSelector(state => state.session.user.id);
+    let availableShares = project.numberOfShares - purchasedShares;
+    let purchaseableShares = user.accountBalance / project.costPerShare;
+    if (purchaseableShares > availableShares) {
+      purchaseableShares = availableShares;
+    }
 
     const history = useHistory();
 
@@ -52,6 +60,8 @@ function PurchasingPage() {
       e.preventDefault();
       const purchase = await dispatch(purchaseActions.createPurchase({ numberOfShares: shares, userId, projectId}));
       const purchaseId = purchase.id;
+      const amount = shares * project.costPerShare;
+      const updatedUser = await dispatch(sessionActions.decreaseBalance(userId, amount))
       history.push(`/purchase/${purchaseId}`);
     }
 
@@ -82,12 +92,11 @@ function PurchasingPage() {
               />
             </label>
             {/* <a hidden={shares >= 10}>must purchase at least 10 shares</a> */}
-            <button type="submit" disabled={(shares < 1 || shares > availableShares)}>submit purchase</button>
-            <p hidden={!(shares < 1 || shares > availableShares)}> must purchase between 1 and {availableShares} shares</p>
-            <h3 hidden={(availableShares < 1 || shares > availableShares)}>cost of purchase: ${(shares * project.costPerShare).toFixed(2)}</h3>
+            <button type="submit" disabled={(shares < 1 || shares > purchaseableShares || shares > availableShares)}>submit purchase</button>
+            <p hidden={!(shares < 1 || shares > purchaseableShares || shares > purchaseableShares)}> must purchase between 1 and {purchaseableShares} shares</p>
+            <h3 hidden={(availableShares < 1 || shares > availableShares || shares > purchaseableShares)}>cost of purchase: ${(shares * project.costPerShare).toFixed(2)}</h3>
           </form>
           <h2 hidden={availableShares > 0}>All shares have been purchased</h2>
-          
         </div>
     );
 } 
