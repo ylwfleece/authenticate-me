@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState } from 'react';
 import {
   useSelector, useDispatch
 } from 'react-redux';
@@ -11,6 +11,7 @@ import * as charityActions from '../../store/charity';
 import * as projectActions from '../../store/project';
 import * as watchlistActions from '../../store/watchlist';
 import * as purchaseActions from '../../store/purchase';
+import * as sessionActions from '../../store/session';
 
 function ProjectDetail() {
   const dispatch = useDispatch();
@@ -39,6 +40,13 @@ function ProjectDetail() {
       }
     });
   }
+
+  // const [ addFunds, setAddFunds ] = useState(false);
+
+  const fundAccount = () => {
+    dispatch(sessionActions.updateUser(user.id));
+    // setAddFunds(true)
+  }
   
   return ( 
     <div className="project">
@@ -47,13 +55,13 @@ function ProjectDetail() {
       <h2>karma per share: {project && project.karmaPerShare} karmic units</h2>
       <h2>cost per share: ${project && project.costPerShare}</h2>
       <div hidden={user.accountBalance <= 0}>
+        <p>you have ${user.accountBalance.toString()}</p>
         <Link to={`/purchasing/${project && project.id}`}>purchase shares</Link>
       </div>
       <div hidden={user.accountBalance > 0}>
         <p>you don't have enough money to buy a share</p>
-        {/* <Link to={`/purchasing/${project && project.id}`}>purchase shares</Link> */}
+        <button onClick={fundAccount}>add $10,000 to account balance</button>
       </div>
-      
     </div>  
   )
 }

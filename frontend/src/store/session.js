@@ -66,6 +66,12 @@ export const logout = () => async (dispatch) => {
     return response;
   };
 
+export const updateUser = (userId) => async (dispatch) => {
+    const response = await fetch(`/api/users/${userId}`);
+    dispatch(setUser(response.data.user));
+    return response;
+}
+
 const initialState = {
     user: null
 };

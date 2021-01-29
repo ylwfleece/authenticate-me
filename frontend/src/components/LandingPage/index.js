@@ -4,9 +4,10 @@ import * as sessionActions from '../../store/session';
 import {useSelector} from 'react-redux';
 import { useState } from 'react';
 import { Redirect } from 'react-router-dom';
+import { 
+    Link
+  } from 'react-router-dom';
 function LandingPage() {
-
-    // const [username, setUsername] = useState();
 
     const user = useSelector(state => state.session.user);
     let username;
@@ -14,13 +15,9 @@ function LandingPage() {
         username = user.username;
     }
 
-    // if (sessionUser.username) {
-    //     setUsername(sessionUser.username);
-    // }
-
     return (
         <div className="landing">
-            <div>Welcome to Robinkarma{username && <>, {username}</>}</div>
+            <div>Welcome to Robinkarma{username && <>, {username} <Link to={`/projects`}>see projects</Link> </>}</div>
             <img src={buddha} alt="buddha"/>
         </div>
     )

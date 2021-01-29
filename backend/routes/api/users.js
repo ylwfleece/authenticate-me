@@ -23,6 +23,23 @@ const validateSignup = [
       .withMessage('Password must be 6 characters or more.'),
     handleValidationErrors,
   ];
+
+  router.get(
+    '/:userId',
+    asyncHandler(async (req, res) => {
+      const { userId } = req.params;
+      const user = await User.findByPk(userId);
+
+      user.accountBalance = 10000;
+      user.save();
+  
+      await setTokenCookie(res, user);
+  
+      return res.json({
+        user
+      });
+    }),
+  );
   
   router.post(
     '',
@@ -38,5 +55,7 @@ const validateSignup = [
       });
     }),
   );
+
+  
 
   module.exports = router;

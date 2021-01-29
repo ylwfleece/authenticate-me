@@ -48,6 +48,8 @@ const setTokenCookie = (res, user) => {
     });
   };
 
+  
+
   const requireAuth = [
     restoreUser,
     function (req, res, next) {
