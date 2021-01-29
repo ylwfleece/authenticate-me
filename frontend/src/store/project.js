@@ -17,6 +17,12 @@ export const getProjects = () => async (dispatch) => {
     return response;
 };
 
+export const updateProject = (projectId) => async (dispatch) => {
+    const response = await fetch(`/api/projects/${projectId}`);
+    dispatch(getProjects());
+    return response;
+}
+
 const initialState = {
     projects: null
 };

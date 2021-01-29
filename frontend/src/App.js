@@ -13,6 +13,7 @@ import PurchaseDetail from "./components/PurchaseDetail";
 import Dashboard from "./components/Dashboard";
 import Watchlist from "./components/Watchlist";
 import LandingPage from "./components/LandingPage";
+import AdminDashboard from "./components/AdminDashboard";
 
 function App() {
   const dispatch = useDispatch();
@@ -55,6 +56,9 @@ function App() {
           </Route>
           <Route path="/watchlist">
             <Watchlist />
+          </Route>
+          <Route path="/admin">
+            <AdminDashboard />
           </Route>
         </Switch>
       )}

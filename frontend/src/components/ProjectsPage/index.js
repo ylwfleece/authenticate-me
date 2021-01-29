@@ -12,7 +12,6 @@ function ProjectsPage() {
 
   const history = useHistory();
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(projectActions.getProjects());
     dispatch(watchlistActions.getWatchlists());
@@ -21,10 +20,8 @@ function ProjectsPage() {
 
   const user = useSelector(state => state.session.user);
   const projects = useSelector(state => state.project.projects);
-
   let purchases = useSelector(state => state.purchase.purchases);
   let purchasedProjects = [];
-
   if (purchases) {
     purchases = purchases.filter(p => p.userId === user.id);
     purchases.forEach(p => {

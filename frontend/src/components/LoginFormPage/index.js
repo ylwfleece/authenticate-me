@@ -11,9 +11,16 @@ function LoginFormPage() {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
 
-  if (sessionUser) return (
-    <Redirect to="/" />
-  );
+  if (sessionUser) {
+    if (sessionUser.username === 'admin') {
+      return (
+        <Redirect to="/admin" />
+      )
+    }
+    return (
+      <Redirect to="/" />
+    );
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();

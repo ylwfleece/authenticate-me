@@ -8,7 +8,13 @@ function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
 
   let sessionLinks;
-  if (sessionUser) {
+  if (sessionUser && sessionUser.username === 'admin') {
+    sessionLinks = (
+      <div className="navbar">
+        <ProfileButton user={sessionUser} />   
+      </div>
+    );
+  } else if (sessionUser) {
     sessionLinks = (
       <div className="navbar">
         <ProfileButton user={sessionUser} />   
@@ -26,8 +32,6 @@ function Navigation({ isLoaded }){
       </div>
     );
   }
-
-
 
   return (
     <>

@@ -13,5 +13,23 @@ router.get(
     }),
 );
 
+router.get(
+    '/:projectId',
+    asyncHandler(async (req, res) => {
+        const { projectId } = req.params;
+        const project = await Project.findOne({
+            where: {
+                id: projectId
+            }
+        });
+        project.karmaReleased = true;
+        project.save();
+
+        return res.json({
+            project
+        });
+    }),
+);
+
 
 module.exports = router;
