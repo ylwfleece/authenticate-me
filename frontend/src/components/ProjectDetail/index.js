@@ -55,11 +55,11 @@ function ProjectDetail() {
       <h2>associated charity: {charity && charity.name} </h2>
       <h2>karma per share: {project && project.karmaPerShare} karmic units</h2>
       <h2>cost per share: ${project && project.costPerShare}</h2>
-      <div hidden={user.accountBalance && user.accountBalance <= 0}>
+      <div hidden={user.accountBalance && (user.accountBalance <= project.costPerShare)}>
         <p>you have ${user.accountBalance && user.accountBalance.toString()}</p>
         <Link to={`/purchasing/${project && project.id}`}>purchase shares</Link>
       </div>
-      <div hidden={user.accountBalance && user.accountBalance > 0}>
+      <div hidden={user.accountBalance && user.accountBalance >= project.costPerShare}>
         <p>you don't have enough money to buy a share</p>
         <button onClick={fundAccount}>add $10,000 to account balance</button>
       </div>

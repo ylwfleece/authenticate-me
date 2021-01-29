@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import * as projectActions from '../../store/project';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 import './AdminDashboard.css';
   function AdminDashboard() {
     const dispatch = useDispatch();
@@ -11,11 +13,14 @@ import './AdminDashboard.css';
     }, [useSelector]);
     
     const projects = useSelector(state => state.project.projects);
-
+    
+    const notify = () => toast("Successfully updated project!");
     const markComplete = (e) => {
         dispatch(projectActions.updateProject(e.target.value));
         e.target.parentNode.hidden = true;
+        notify();
     }
+
 
     return (
         <div>
@@ -26,6 +31,9 @@ import './AdminDashboard.css';
                 <button value={project.id} onClick={markComplete}>mark as complete</button>
             </div>
           ))}
+          <div>
+            <ToastContainer />
+         </div>
       </div>
     );
   }
